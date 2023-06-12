@@ -1,34 +1,29 @@
 import type {
-  LocalStorageGetType,
-  LocalStorageSetType,
+  LocalStorageGetItemDef,
+  LocalStorageResetItemDef,
+  LocalStorageSetItemDef,
 } from "./type";
 
-export const resetLocalStorage = (key: keyof LocalStorageGetType) => {
+export const resetLocalStorage: LocalStorageResetItemDef = (key) => {
   localStorage.removeItem(key);
 };
 
-export const getLocalStorageItem = <
-  T extends keyof LocalStorageGetType
->(
-  key: T
-): LocalStorageGetType[T] | undefined => {
+export const getLocalStorageItem: LocalStorageGetItemDef = (key) => {
   try {
     const serializedData = localStorage.getItem(key);
     if (serializedData === null) {
       resetLocalStorage(key);
-      return undefined;
+      return null;
     }
     return JSON.parse(serializedData);
   } catch {
-    return undefined;
+    return null;
   }
 };
 
-export const setLocalStorageItem = <
-  T extends keyof LocalStorageSetType
->(
-  key: T,
-  value: LocalStorageSetType[T]
+export const setLocalStorageItem: LocalStorageSetItemDef = (
+  key,
+  value
 ) => {
   const serializedData = JSON.stringify(value);
   localStorage.setItem(key, serializedData);

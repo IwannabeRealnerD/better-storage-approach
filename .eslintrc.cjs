@@ -5,10 +5,11 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "prettier",
   ],
-  plugins: ["react-hooks"],
+  plugins: ["react-hooks", "unicorn"],
   rules: {
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-unused-vars": "error",
+    "unicorn/no-empty-file": "error",
     "react/no-unknown-property": ["error", { ignore: ["css"] }],
     "react/require-default-props": "off",
     "react-hooks/exhaustive-deps": "error",

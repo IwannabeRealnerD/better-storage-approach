@@ -2,18 +2,33 @@ export type CommandType = { command: string; result: string };
 export type CountType = number;
 export type TestType = string;
 
-type LocalStorageCommonKeys = "COMMAND" | "TEST" | "COUNT";
+export interface LocalStorageDef {
+  COMMAND: CommandType[];
+  TEST: TestType;
+  COUNT: CountType;
+}
 
-export type LocalStorageGetType = {
-  [K in LocalStorageCommonKeys]: K extends "COMMAND"
+export interface LocalStorageResetItemDef {
+  <T extends keyof LocalStorageDef>(key: T): void;
+}
+export interface LocalStorageGetItemDef {
+  <T extends keyof LocalStorageDef>(key: T):
+    | LocalStorageDef[T]
+    | null
+    | undefined;
+}
+
+export interface LocalStorageSetItemDef {
+  <T extends keyof LocalStorageDef>(
+    key: T,
+    value: LocalStorageDef[T]
+  ): void;
+}
+
+export type exLocalStorageGetType = {
+  [K in keyof LocalStorageDef]: K extends "COMMAND"
     ? CommandType[]
     : K extends "TEST"
     ? TestType[]
     : CountType;
-};
-
-export type LocalStorageSetType = {
-  COMMAND: CommandType[];
-  TEST: TestType;
-  COUNT: CountType;
 };
