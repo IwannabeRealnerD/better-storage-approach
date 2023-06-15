@@ -18,9 +18,10 @@ const App = () => (
         <h2 aria-labelledby="exampleId">Examples</h2>
         <div>
           <p>{`If Local Storage doesn't have any data`}</p>
-          {getLocalStorageItem("COMMAND") && (
-            <p>{`Storage that's not existing`} </p>
-          )}
+          <p>
+            {getLocalStorageItem("TEST") ||
+              `Storage that's not existing`}
+          </p>
         </div>
       </section>
     </div>

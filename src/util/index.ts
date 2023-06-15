@@ -17,7 +17,7 @@ export const getLocalStorageItem: LocalStorageGetItemDef = (key) => {
     }
     return JSON.parse(serializedData);
   } catch {
-    return null;
+    return undefined;
   }
 };
 
