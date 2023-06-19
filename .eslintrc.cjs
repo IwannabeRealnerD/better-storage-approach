@@ -43,6 +43,10 @@ module.exports = {
     "react/destructuring-assignment": ["error", "never"],
     "no-console": "error",
     camelcase: "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      { devDependencies: true },
+    ],
   },
   settings: {
     "import/resolver": {

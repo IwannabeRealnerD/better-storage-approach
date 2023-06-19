@@ -3,7 +3,7 @@ export type CountType = number;
 export type TestType = string;
 
 export interface LocalStorageDef {
-  COMMAND: CommandType[];
+  COMMAND: CommandType;
   TEST: TestType;
   COUNT: CountType;
 }
