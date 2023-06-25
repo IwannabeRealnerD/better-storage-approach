@@ -31,15 +31,16 @@ export const innerContainer = style({
   },
 });
 
+export const clearLocalStorageButtonContainer = style({
+  display: "flex",
+  gap: "0.5rem",
+  alignContent: "center",
+});
+
 export const highlightedText = style({
   backgroundColor: "lightgray",
   padding: "0.1rem 0.4rem",
   borderRadius: "8px",
   fontSize: "0.8rem",
   fontWeight: 500,
-});
-
-export const exampleContainer = style({
-  backgroundColor: "lightGray",
-  padding: "0.5rem 1rem",
 });

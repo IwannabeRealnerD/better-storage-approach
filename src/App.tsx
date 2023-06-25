@@ -1,13 +1,21 @@
-import { getLocalStorageItem, setLocalStorageItem } from "@/utils";
+import {
+  clearLocalStorage,
+  // getLocalStorageItem,
+  setLocalStorageItem,
+} from "@/utils";
+
 import * as style from "./App.css";
+import { ExampleBox } from "./components";
+import { useStorageState } from "./hooks/useStorageState";
 
 const App = () => {
-  window.localStorage.setItem("COUNT", "{{]Broken ValueExample");
-  setLocalStorageItem("COMMAND", {
-    command: "command value",
-    result: "result value",
-  });
-  const commandObj = getLocalStorageItem("COMMAND");
+  // window.localStorage.setItem("COUNT", "{{]Broken ValueExample");
+  // const brokenValue = String(getLocalStorageItem("COUNT"));
+  const commandValue = useStorageState("COMMAND");
+  const countValue = useStorageState("COUNT");
+  const testValue = useStorageState("TEST");
+  // eslint-disable-next-line no-console
+  console.log("app rerendering'");
   return (
     <main id="pageTitle" className={style.container}>
       <div className={style.innerContainer}>
@@ -22,30 +30,45 @@ const App = () => {
             <span className={style.highlightedText}>/src/util</span>
             directory.
           </p>
+          <div className={style.clearLocalStorageButtonContainer}>
+            <p>
+              If you want to reset Local Stoarge, Press below button
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                clearLocalStorage();
+              }}
+            >
+              Clear Local Storage
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setLocalStorageItem("COMMAND", "commandValue");
+              }}
+            >
+              Set Command value in Local Storage
+            </button>
+          </div>
         </section>
         <section id="exampleSection">
           <h2 aria-labelledby="exampleSection">Examples</h2>
-          <div className={style.exampleContainer}>
-            <p>
-              <span>{`If Local Storage doesn't have corresponding value from key - It can be
-                type checked, try it with your IDE`}</span>{" "}
-            </p>
-            <div>
-              <span>{commandObj?.command}, </span>
-              <span>{commandObj?.result}</span>
-            </div>
-          </div>
-          <div className={style.exampleContainer}>
-            <p>
-              <span>
-                If Local Storage has broken value(which cannot be
-                deserialized with JSON.parse method)
-              </span>
-              <div>
-                <span>{String(getLocalStorageItem("COUNT"))}</span>
-              </div>
-            </p>
-          </div>
+          <ExampleBox
+            explain={`When Local Storage doesn't have corresponding value from key - It can be
+                type checked, try it with your IDE`}
+            value={String(commandValue)}
+          />
+          {/* <ExampleBox
+            explain="When Local Storage has broken value(which cannot be deserialized with JSON.parse method)"
+            value={brokenValue}
+          />
+          <ExampleBox
+            explain="When Local Storage has data from given key - It can be type checked, try it with your IDE"
+            value={brokenValue}
+          /> */}
+          {/* 
+       
           <div className={style.exampleContainer}>
             <p>
               <span>
@@ -56,7 +79,7 @@ const App = () => {
                 <span>{String(getLocalStorageItem("TEST"))}</span>
               </div>
             </p>
-          </div>
+          </div> */}
         </section>
       </div>
     </main>
