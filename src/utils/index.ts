@@ -6,15 +6,10 @@ import type {
 
 export const resetLocalStorage: LocalStorageResetItemDef = (key) => {
   localStorage.removeItem(key);
-  window.dispatchEvent(new Event(`storageChanged-${key}`));
 };
 
 export const clearLocalStorage = () => {
   localStorage.clear();
-
-  window.dispatchEvent(new Event("storageChanged-COMMAND"));
-  window.dispatchEvent(new Event("storageChanged-TEST"));
-  window.dispatchEvent(new Event("storageChanged-COUNT"));
 };
 
 export const getLocalStorageItem: LocalStorageGetItemDef = (key) => {
@@ -36,5 +31,4 @@ export const setLocalStorageItem: LocalStorageSetItemDef = (
 ) => {
   const serializedData = JSON.stringify(value);
   localStorage.setItem(key, serializedData);
-  window.dispatchEvent(new Event(`storageChanged-${key}`));
 };

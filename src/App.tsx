@@ -1,65 +1,56 @@
 import {
   clearLocalStorage,
-  // getLocalStorageItem,
+  getLocalStorageItem,
   setLocalStorageItem,
 } from "@/utils";
 
 import * as style from "./App.css";
 import { ExampleBox } from "./components";
-import { useStorageState } from "./hooks/useStorageState";
 
-const App = () => {
-  // window.localStorage.setItem("COUNT", "{{]Broken ValueExample");
-  // const brokenValue = String(getLocalStorageItem("COUNT"));
-  const commandValue = useStorageState("COMMAND");
-  const countValue = useStorageState("COUNT");
-  const testValue = useStorageState("TEST");
-  // eslint-disable-next-line no-console
-  console.log("app rerendering'");
-  return (
-    <main id="pageTitle" className={style.container}>
-      <div className={style.innerContainer}>
-        <h1 aria-labelledby="pageTitle">Better Storage Approach</h1>
-        <section>
-          <p>
-            {`Join the Journey to find good way to manipulate web
+const App = () => (
+  <main id="pageTitle" className={style.container}>
+    <div className={style.innerContainer}>
+      <h1 aria-labelledby="pageTitle">Better Storage Approach</h1>
+      <section>
+        <p>
+          {`Join the Journey to find good way to manipulate web
           browser's storages`}
-          </p>
+        </p>
+        <p>
+          if you want to check implementations, please check{" "}
+          <span className={style.highlightedText}>/src/util</span>
+          directory.
+        </p>
+        <div className={style.clearLocalStorageButtonContainer}>
           <p>
-            if you want to check implementations, please check{" "}
-            <span className={style.highlightedText}>/src/util</span>
-            directory.
+            If you want to reset Local Stoarge, Press below button
           </p>
-          <div className={style.clearLocalStorageButtonContainer}>
-            <p>
-              If you want to reset Local Stoarge, Press below button
-            </p>
-            <button
-              type="button"
-              onClick={() => {
-                clearLocalStorage();
-              }}
-            >
-              Clear Local Storage
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setLocalStorageItem("COMMAND", "commandValue");
-              }}
-            >
-              Set Command value in Local Storage
-            </button>
-          </div>
-        </section>
-        <section id="exampleSection">
-          <h2 aria-labelledby="exampleSection">Examples</h2>
-          <ExampleBox
-            explain={`When Local Storage doesn't have corresponding value from key - It can be
+          <button
+            type="button"
+            onClick={() => {
+              clearLocalStorage();
+            }}
+          >
+            Clear Local Storage
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setLocalStorageItem("COMMAND", "commandValue");
+            }}
+          >
+            Set Command value in Local Storage
+          </button>
+        </div>
+      </section>
+      <section id="exampleSection">
+        <h2 aria-labelledby="exampleSection">Examples</h2>
+        <ExampleBox
+          explain={`When Local Storage doesn't have corresponding value from key - It can be
                 type checked, try it with your IDE`}
-            value={String(commandValue)}
-          />
-          {/* <ExampleBox
+          value={getLocalStorageItem("COMMAND") || ""}
+        />
+        {/* <ExampleBox
             explain="When Local Storage has broken value(which cannot be deserialized with JSON.parse method)"
             value={brokenValue}
           />
@@ -67,7 +58,7 @@ const App = () => {
             explain="When Local Storage has data from given key - It can be type checked, try it with your IDE"
             value={brokenValue}
           /> */}
-          {/* 
+        {/* 
        
           <div className={style.exampleContainer}>
             <p>
@@ -80,10 +71,9 @@ const App = () => {
               </div>
             </p>
           </div> */}
-        </section>
-      </div>
-    </main>
-  );
-};
+      </section>
+    </div>
+  </main>
+);
 
 export default App;
