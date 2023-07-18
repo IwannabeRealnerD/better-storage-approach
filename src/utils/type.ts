@@ -1,6 +1,8 @@
-export type CommandType = string;
-export type CountType = number;
-export type TestType = string;
+import {
+  CommandType,
+  CountType,
+  TestType,
+} from "@/types/storageType";
 
 export interface LocalStorageDef {
   COMMAND: CommandType;
@@ -25,7 +27,8 @@ export interface LocalStorageSetItemDef {
   ): void;
 }
 
-export type exLocalStorageGetType = {
+// This is deprecated type because it ahs too complicated ternary operator.
+export type DeprecatedLocalStorageGetType = {
   [K in keyof LocalStorageDef]: K extends "COMMAND"
     ? CommandType[]
     : K extends "TEST"
