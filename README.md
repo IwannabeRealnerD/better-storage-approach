@@ -36,6 +36,6 @@ pnpm dev # start dev server
 
 - Visit src/utils directory to checkout implementations of localStorage manipulation functions
 
-## Additional Info
+## Additional Information
 
 - `DeprecatedLocalStorageGetType` -> I started with this approach(typing) but It didn't take me long time to realize that this approach has bad readability, It's stil remains on codespace for history management.
